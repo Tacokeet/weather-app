@@ -22,14 +22,14 @@ class OpenMeteoTemp
 
             Log::info('Updating temperature for ' . $city->name . ' from OpenMeteo');
 
-            // $temp = WeatherService::getTemperatureFromOpenMeteo($city->lat, $city->lon);
-            // Temperature::create([
-            //     'city_id' => $city->id,
-            //     'latitude' => $city->lat,
-            //     'longitude' => $city->lon,
-            //     'temperature' => $temp,
-            //     'source' => 'OpenMeteo'
-            // ]);
+            $temp = WeatherService::getTemperatureFromOpenMeteo($city->lat, $city->lon);
+            Temperature::create([
+                'city_id' => $city->id,
+                'latitude' => $city->lat,
+                'longitude' => $city->lon,
+                'temperature' => $temp,
+                'source' => 'OpenMeteo'
+            ]);
         }
     }
 }
