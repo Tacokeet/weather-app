@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('temperatures', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('city_id')->constrained();
-            $table->string('temperature');
-            $table->string('source');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->string('name');
+            $table->string('schedule'); // CRON style
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('temperatures');
+        Schema::dropIfExists('cities');
     }
 };

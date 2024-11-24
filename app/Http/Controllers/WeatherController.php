@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Temperature;
 use App\Services\WeatherService;
 use Illuminate\Http\Request;
@@ -63,7 +64,7 @@ class WeatherController extends Controller
 
 
 
-        return view('weather.index', ['sources' => Temperature::getTemperatures()]);
+        return view('weather.index', City::getCityTemperatures('groningen'));
     }
 
     /**
@@ -77,9 +78,9 @@ class WeatherController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $city)
     {
-        //
+        return view('weather.show', City::getCityTemperatures($city));
     }
 
     /**

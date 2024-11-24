@@ -9,8 +9,7 @@ class Temperature extends Model
     protected $table = 'temperatures';
 
     protected $fillable = [
-        'latitude',
-        'longitude',
+        'city_id',
         'temperature',
         'source'
     ];
@@ -20,14 +19,25 @@ class Temperature extends Model
         'OpenMeteo'
     ];
 
-    public static function getTemperatures(int $limit = 10): array
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public static function getTemperatures(int $limit = 10, int $city_id): array
     {
         $query = null;
         foreach (self::SOURCES as $source) {
             if ($query === null) {
-                $query = self::where('source', $source)->orderBy('created_at', 'desc')->take($limit);
+                $query = self::where('source', $source)
+                    ->where('city_id', $city_id)
+                    ->orderBy('created_at', 'desc')
+                    ->take($limit);
             } else {
-                $query->union(self::where('source', $source)->orderBy('created_at', 'desc')->take($limit)->getQuery());
+                $query->union(self::where('source', $source)
+                    ->where('city_id', $city_id)
+                    ->orderBy('created_at', 'desc')
+                    ->take($limit)->getQuery());
             }
         }
         $results = $query->get();
