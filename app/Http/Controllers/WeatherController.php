@@ -43,8 +43,8 @@ class WeatherController extends Controller
         // ]);
 
         // Groningen lat and lon
-        $lat = 53.2194;
-        $lon = 6.5665;
+        // $lat = 53.2194;
+        // $lon = 6.5665;
 
         // OpenWeatherMap API / Current state with every 10 min update
         // $response = Http::withOptions(['verify' => false])->get('https://api.openweathermap.org/data/2.5/weather', [
@@ -64,7 +64,7 @@ class WeatherController extends Controller
 
 
 
-        return view('weather.index', City::getCityTemperatures('groningen'));
+        // return view('weather.index', City::getCityTemperatures('groningen'));
     }
 
     /**
