@@ -22,3 +22,5 @@ Design an application that:
 
 Finally run it `composer run dev`
 
+Go to `http://localhost:8000/weather/groningen`
+To see some temperatures
