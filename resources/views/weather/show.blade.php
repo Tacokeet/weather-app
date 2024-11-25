@@ -7,7 +7,7 @@
 
 <body>
     <h1>Weather Information</h1>
-    <h2>{{ $city }}</h2>
+    <h2>{{ ucfirst($city) }}</h2>
 
     @foreach ($temperatures as $source => $entries)
         <h2>{{ $source }}</h2>

@@ -26,6 +26,7 @@ class OpenMeteoTemp
             }
 
             if (!$cron->isDue()) {
+                Log::info('[OpenMeteo] Skipping ' . $city->name . ' for now');
                 continue;
             }
 
