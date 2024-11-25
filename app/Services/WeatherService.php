@@ -15,6 +15,9 @@ class WeatherService
             'units' => 'metric'
         ]);
 
+        if ($response->failed()) {
+            throw new \Exception('Failed to fetch temperature from OpenWeatherMap');
+        }
 
         return $response['main']['temp'];
     }
@@ -26,6 +29,10 @@ class WeatherService
             'longitude' => $lon,
             'current' => 'temperature_2m',
         ]);
+
+        if ($response->failed()) {
+            throw new \Exception('Failed to fetch temperature from OpenMeteo');
+        }
 
         return $response['current']['temperature_2m'];
     }
