@@ -32,7 +32,7 @@ class OpenMeteoTemp
 
             Log::info('Updating temperature for ' . $city->name . ' from OpenMeteo');
 
-            $temp = WeatherService::getTemperatureFromOpenMeteo($city->lat, $city->lon);
+            $temp = WeatherService::getTemperatureFromOpenMeteo($city->latitude, $city->longitude);
             Temperature::create([
                 'city_id' => $city->id,
                 'latitude' => $city->lat,
