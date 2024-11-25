@@ -80,6 +80,10 @@ class WeatherController extends Controller
      */
     public function show(string $city)
     {
+        if (!City::where('name', $city)->exists()) {
+            return response()->json(['error' => 'City not found'], 404);
+        }
+
         return view('weather.show', City::getCityTemperatures($city));
     }
 

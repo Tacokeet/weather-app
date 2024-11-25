@@ -14,6 +14,15 @@ class OpenWeatherMapTemp
         $cities = City::all();
         foreach ($cities as $city) {
             $cron = new CronExpression($city->schedule);
+            $nextRun1 = $cron->getNextRunDate();
+            $nextRun2 = $cron->getNextRunDate($nextRun1);
+
+            $interval = $nextRun1->diff($nextRun2);
+            $apiInterval = new \DateInterval('PT10M'); // OpenWeatherMap updates every 10 minutes
+
+            if (isDateIntervalSmaller($interval, $apiInterval)) {
+                $cron->setExpression('*/10 * * * *');
+            }
 
             if (!$cron->isDue()) {
                 continue;

@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Schedule;
 //     $this->comment(Inspiring::quote());
 // })->purpose('Display an inspiring quote')->daily();
 
-Schedule::call(new OpenWeatherMapTemp)->everyTenMinutes(); // every 10 min update
-Schedule::call(new OpenMeteoTemp)->everyFifteenMinutes(); //  every 15 min update
 
-// Schedule::call(new OpenWeatherMapTemp)->everyMinute(); // test
-// Schedule::call(new OpenMeteoTemp)->everyMinute(); //  test
+Schedule::call(new OpenWeatherMapTemp)->everyMinute();
+Schedule::call(new OpenMeteoTemp)->everyMinute();

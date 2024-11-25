@@ -15,6 +15,15 @@ class OpenMeteoTemp
         foreach ($cities as $city) {
 
             $cron = new CronExpression($city->schedule);
+            $nextRun1 = $cron->getNextRunDate();
+            $nextRun2 = $cron->getNextRunDate($nextRun1);
+
+            $interval = $nextRun1->diff($nextRun2);
+            $apiInterval = new \DateInterval('PT15M'); // OpenMeteo updates every 15 minutes
+
+            if (isDateIntervalSmaller($interval, $apiInterval)) {
+                $cron->setExpression('*/15 * * * *');
+            }
 
             if (!$cron->isDue()) {
                 continue;

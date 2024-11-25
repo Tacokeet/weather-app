@@ -24,3 +24,8 @@ Finally run it `composer run dev`
 
 Go to `http://localhost:8000/weather/groningen`
 To see some temperatures
+
+## Pollable cities
+
+Every city has a schedule property, that uses CRON syntax
+You can update this value to change the polling interval for the city
