@@ -24,7 +24,7 @@ class Temperature extends Model
         return $this->belongsTo(City::class);
     }
 
-    public static function getTemperatures(int $limit = 10, int $city_id): array
+    public static function getTemperatures(int $limit, int $city_id): array
     {
         $query = null;
         foreach (self::SOURCES as $source) {
